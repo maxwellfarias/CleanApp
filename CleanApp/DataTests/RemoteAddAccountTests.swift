@@ -7,7 +7,7 @@
 
 import XCTest
 
-//Use Case
+//Use Case recebera a injecao do HttpClient protocol que será implementado por um adapter
 class RemoteAddAccount {
     private let url: URL
     private let httpClient: HttpClient
@@ -29,12 +29,14 @@ protocol HttpClient {
 class RemoteAddAccountTests: XCTestCase {
     func test_() {
         let url: URL = URL(string: "http://any-url.com")!
-        let httpClient = HttpClientSpy()
-        let sut = RemoteAddAccount(url: url, httpClient: httpClient)
+        let httpClientSpy = HttpClientSpy()
+        let sut = RemoteAddAccount(url: url, httpClient: httpClientSpy)
         sut.add()
-        XCTAssertEqual(httpClient.url, url)
+        XCTAssertEqual(httpClientSpy.url, url)
     }
-    
+}
+
+extension RemoteAddAccountTests {
     class HttpClientSpy: HttpClient {
         var url: URL?
         
