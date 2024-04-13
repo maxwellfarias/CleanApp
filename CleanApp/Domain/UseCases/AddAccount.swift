@@ -12,7 +12,7 @@ public protocol AddAccount {
 }
 
 //Quando uma struct eh public, por padrao o seu init eh interno, por isso eh preciso fazer a modificacao para public. Foi necessario deixar tudo publico para que a camada de testes que esta em outro pacote tambem pudesse fazer uso desses protolos e structs
-public struct AddAccountModel: Encodable {
+public struct AddAccountModel: Model {
     public var name: String
     public var email: String
     public var password: String
@@ -25,5 +25,7 @@ public struct AddAccountModel: Encodable {
         self.passwordConfirmation = passwordConfirmation
     }
 }
+
+
 
 

@@ -13,6 +13,11 @@
 		C4AE19FA2BC8D2A90096F6F7 /* RemoteAddAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4AE19F92BC8D2A90096F6F7 /* RemoteAddAccountTests.swift */; };
 		C4AE1A032BC8D3080096F6F7 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AE19DD2BC8CF190096F6F7 /* Domain.framework */; };
 		C4AE1A042BC8D3080096F6F7 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AE19DD2BC8CF190096F6F7 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4E111792BC9E50100D877C8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E111782BC9E50100D877C8 /* Model.swift */; };
+		C4E1117B2BC9E62900D877C8 /* RemoteAddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1117A2BC9E62900D877C8 /* RemoteAddAccount.swift */; };
+		C4E1117D2BC9E69700D877C8 /* HttpPostClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E1117C2BC9E69700D877C8 /* HttpPostClient.swift */; };
+		C4E111862BCA197800D877C8 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E111852BCA197800D877C8 /* DomainError.swift */; };
+		C4E111882BCA1F0900D877C8 /* HttpError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E111872BCA1F0900D877C8 /* HttpError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,11 @@
 		C4AE19ED2BC8D2A90096F6F7 /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AE19F42BC8D2A90096F6F7 /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4AE19F92BC8D2A90096F6F7 /* RemoteAddAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccountTests.swift; sourceTree = "<group>"; };
+		C4E111782BC9E50100D877C8 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		C4E1117A2BC9E62900D877C8 /* RemoteAddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccount.swift; sourceTree = "<group>"; };
+		C4E1117C2BC9E69700D877C8 /* HttpPostClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpPostClient.swift; sourceTree = "<group>"; };
+		C4E111852BCA197800D877C8 /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
+		C4E111872BCA1F0900D877C8 /* HttpError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,8 +116,9 @@
 		C4AE19DE2BC8CF190096F6F7 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				C4AE19E42BC8CFA20096F6F7 /* AddAccount.swift */,
-				C4AE19E62BC8D17C0096F6F7 /* AccountModel.swift */,
+				C4E111842BCA195800D877C8 /* Erros */,
+				C4E1117E2BCA08E200D877C8 /* UseCases */,
+				C4E111802BCA091000D877C8 /* Models */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -115,6 +126,8 @@
 		C4AE19EE2BC8D2A90096F6F7 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C4E111812BCA096700D877C8 /* UseCases */,
+				C4E111822BCA097400D877C8 /* Http */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -122,7 +135,7 @@
 		C4AE19F82BC8D2A90096F6F7 /* DataTests */ = {
 			isa = PBXGroup;
 			children = (
-				C4AE19F92BC8D2A90096F6F7 /* RemoteAddAccountTests.swift */,
+				C4E111832BCA098C00D877C8 /* UseCases */,
 			);
 			path = DataTests;
 			sourceTree = "<group>";
@@ -132,6 +145,56 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4E1117E2BCA08E200D877C8 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				C4AE19E42BC8CFA20096F6F7 /* AddAccount.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		C4E111802BCA091000D877C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C4AE19E62BC8D17C0096F6F7 /* AccountModel.swift */,
+				C4E111782BC9E50100D877C8 /* Model.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C4E111812BCA096700D877C8 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1117A2BC9E62900D877C8 /* RemoteAddAccount.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		C4E111822BCA097400D877C8 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				C4E1117C2BC9E69700D877C8 /* HttpPostClient.swift */,
+				C4E111872BCA1F0900D877C8 /* HttpError.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		C4E111832BCA098C00D877C8 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				C4AE19F92BC8D2A90096F6F7 /* RemoteAddAccountTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		C4E111842BCA195800D877C8 /* Erros */ = {
+			isa = PBXGroup;
+			children = (
+				C4E111852BCA197800D877C8 /* DomainError.swift */,
+			);
+			path = Erros;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +289,7 @@
 					};
 					C4AE19EC2BC8D2A90096F6F7 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					C4AE19F32BC8D2A90096F6F7 = {
 						CreatedOnToolsVersion = 15.2;
@@ -281,7 +345,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E111792BC9E50100D877C8 /* Model.swift in Sources */,
 				C4AE19E52BC8CFA20096F6F7 /* AddAccount.swift in Sources */,
+				C4E111862BCA197800D877C8 /* DomainError.swift in Sources */,
 				C4AE19E72BC8D17C0096F6F7 /* AccountModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +356,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4E1117D2BC9E69700D877C8 /* HttpPostClient.swift in Sources */,
+				C4E111882BCA1F0900D877C8 /* HttpError.swift in Sources */,
+				C4E1117B2BC9E62900D877C8 /* RemoteAddAccount.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +581,7 @@
 		C4AE19FD2BC8D2A90096F6F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -537,6 +607,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -544,6 +615,7 @@
 		C4AE19FE2BC8D2A90096F6F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -576,6 +648,7 @@
 		C4AE1A002BC8D2A90096F6F7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -592,6 +665,7 @@
 		C4AE1A012BC8D2A90096F6F7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
