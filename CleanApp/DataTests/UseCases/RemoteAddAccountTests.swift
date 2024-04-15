@@ -11,7 +11,7 @@ import Data
 
 class RemoteAddAccountTests: XCTestCase {
     func test_add_should_call_httpClient_with_correct_url_and_only_once() {
-        let url = URL(string: "http://any-url.com")!
+        let url = makeUrl()
         let (sut, httpClientSpy) = makeSut(url: url)
         sut.add(addAccountModel: makeAddAccountModel()) {_ in}
         XCTAssertEqual(httpClientSpy.urls, [url])
@@ -42,25 +42,27 @@ class RemoteAddAccountTests: XCTestCase {
     func test_add_should_complete_with_error_if_client_completes_with_invalid_data() {
         let (sut, httpClientSpy) = makeSut()
         expect(sut, completeWith: .failure(.enexpected), when: {
-            httpClientSpy.completeWithData(Data("invalid_data".utf8))
+            httpClientSpy.completeWithData(makeInvalidData())
         })
     }
 }
 
 extension RemoteAddAccountTests {
-    func makeSut(url: URL = URL(string: "http://any-url.com")!) -> (sut: RemoteAddAccount, httpClientSpy: HttpClientSpy) {
+    func makeSut(url: URL = URL(string: "http://any-url.com")!, file: StaticString = #file, line: UInt = #line) -> (sut: RemoteAddAccount, httpClientSpy: HttpClientSpy) {
         let httpClientSpy = HttpClientSpy()
         let sut = RemoteAddAccount(url: url, httpClient: httpClientSpy)
+        checkMemoryLeak(for: sut, file: file, line: line)
+        checkMemoryLeak(for: httpClientSpy, file: file, line: line)
         return (sut, httpClientSpy)
     }
     
-    func expect(_ sut: RemoteAddAccount, completeWith expectedResult: Result<AccountModel, DomainError>, when action: () -> Void) {
+    func expect(_ sut: RemoteAddAccount, completeWith expectedResult: Result<AccountModel, DomainError>, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "waiting")
         sut.add(addAccountModel: makeAddAccountModel()) { receivedResult in
             switch (expectedResult, receivedResult) {
-            case (.failure(let expectedError), .failure(let receivedError)): XCTAssertEqual(expectedError, receivedError)
-            case (.success(let expectedAccount), .success(let receivedAccount)): XCTAssertEqual(expectedAccount, receivedAccount)
-            default: XCTFail("Expected \(expectedResult) received \(receivedResult)")
+            case (.failure(let expectedError), .failure(let receivedError)): XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            case (.success(let expectedAccount), .success(let receivedAccount)): XCTAssertEqual(expectedAccount, receivedAccount, file: file, line: line)
+            default: XCTFail("Expected \(expectedResult) received \(receivedResult)", file: file, line: line)
             }
             exp.fulfill()
         }
@@ -68,8 +70,22 @@ extension RemoteAddAccountTests {
         wait(for: [exp], timeout: 1)
     }
     
+    func checkMemoryLeak(for instance: AnyObject, file: StaticString = #file, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, file: file, line: line)
+        }
+    }
+    
+    func makeInvalidData() -> Data {
+        return Data("invalid_data".utf8)
+    }
+    
     func makeAddAccountModel() -> AddAccountModel {
         return AddAccountModel(name: "any_name", email: "any_email", password: "any_password", passwordConfirmation: "any_password")
+    }
+    
+    func makeUrl() -> URL {
+        return URL(string: "http://any-url.com")!
     }
     
     func makeAccountModel() -> AccountModel {
