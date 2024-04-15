@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol AddAccount {
-    func add(addAccountModel: AddAccountModel, completion: @escaping (Result<AccountModel, Error>) -> Void)
+    func add(addAccountModel: AddAccountModel, completion: @escaping (Result<AccountModel, DomainError>) -> Void)
 }
 
 //Quando uma struct eh public, por padrao o seu init eh interno, por isso eh preciso fazer a modificacao para public. Foi necessario deixar tudo publico para que a camada de testes que esta em outro pacote tambem pudesse fazer uso desses protolos e structs
