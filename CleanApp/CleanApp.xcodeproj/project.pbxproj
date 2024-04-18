@@ -24,6 +24,7 @@
 		C4B5ABDA2BCDBC810078D037 /* TestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABD92BCDBC810078D037 /* TestFactories.swift */; };
 		C4B5ABDD2BCDBD260078D037 /* HttpClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABDC2BCDBD260078D037 /* HttpClientSpy.swift */; };
 		C4B5ABDF2BCDBD7D0078D037 /* AccountModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABDE2BCDBD7D0078D037 /* AccountModelFactory.swift */; };
+		C4D5368D2BD14B48001DAF11 /* ExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A486C2BCB6DAF008D3445 /* ExtensionHelpers.swift */; };
 		C4D935122BD03AC200142776 /* AccountModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABDE2BCDBD7D0078D037 /* AccountModelFactory.swift */; };
 		C4D935152BD03E5000142776 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C4D935142BD03E5000142776 /* Alamofire */; };
 		C4E111792BC9E50100D877C8 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E111782BC9E50100D877C8 /* Model.swift */; };
@@ -539,6 +540,7 @@
 				C4412D552BCF606900CD8549 /* TestFactories.swift in Sources */,
 				C4412D462BCF5F0900CD8549 /* AlamofireAdapterTests.swift in Sources */,
 				C4D935122BD03AC200142776 /* AccountModelFactory.swift in Sources */,
+				C4D5368D2BD14B48001DAF11 /* ExtensionHelpers.swift in Sources */,
 				C4412D542BCF605D00CD8549 /* TestExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
