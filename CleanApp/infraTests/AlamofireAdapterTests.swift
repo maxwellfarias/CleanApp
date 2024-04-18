@@ -15,8 +15,9 @@ class AlamofireAdapter {
         self.session = session
     }
     
-    func post(to url: URL) {
-        session.request(url, method: .post).resume()
+    func post(to url: URL, with data: Data?) {
+        let json = try? JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]
+        session.request(url, method: .post, parameters: json, encoding: JSONEncoding.default).resume()
     }
 }
 
@@ -31,9 +32,11 @@ final class AlamofireAdapterTests: XCTestCase {
         UrlProtocolStub.observeRequest { request in
             XCTAssertEqual(url, request.url)
             XCTAssertEqual(request.method, .post)
+//As the httpBody for some reason is returning null, so it was necessary to get the httpBodyStream. The check carried out is just to see if there is data, but the ideal scenario would be to convert httpBodyStream to Data and compare the input and output data.
+            XCTAssertNotNil(request.httpBodyStream)
             exp.fulfill()
         }
-        sut.post(to: url)
+        sut.post(to: url, with: makeValidData())
         wait(for: [exp], timeout: 1)
     }
 }
@@ -52,7 +55,7 @@ class UrlProtocolStub: URLProtocol {
     override open class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
-    
+
     open override func startLoading() {
         UrlProtocolStub.emit?(request)
     }
