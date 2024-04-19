@@ -9,18 +9,35 @@ import XCTest
 import Alamofire
 import Data
 
-class AlamofireAdapter {
+class AlamofireAdapter: HttpPostClient {
     private let session: Session
     
     init(session: Session = .default) {
         self.session = session
     }
     
-    func post(to url: URL, with data: Data?, completion: @escaping (Result<Data, HttpError>) -> Void) {
+    func post(to url: URL, with data: Data?, completion: @escaping (Result<Data?, HttpError>) -> Void) {
         session.request(url, method: .post, parameters: data?.toJson(), encoding: JSONEncoding.default).responseData { dataResponse in
+            guard let statusCode = dataResponse.response?.statusCode else {return
+                completion(.failure(.noConnectivity))}
             switch dataResponse.result {
             case .failure: completion(.failure(.noConnectivity))
-            case .success: break
+            case .success(let data):
+                switch statusCode {
+                case 204:
+                    completion(.success(nil))
+                case 200...299:
+                    completion(.success(data))
+                case 401:
+                    completion(.failure(.unauthorized))
+                case 403:
+                    completion(.failure(.forbidden))
+                case 400...499:
+                    completion(.failure(.badRequest))
+                case 500...599:
+                    completion(.failure(.serverError))
+                default: completion(.failure(.noConnectivity))
+                }
             }
         }
     }
@@ -44,17 +61,34 @@ final class AlamofireAdapterTests: XCTestCase {
     }
     
     func test_post_should_complete_with_error_when_request_completes_with_error() {
-        let sut = makeSut()
-        UrlProtocolStub.simulate(data: nil, response: nil, error: makeError())
-        let exp = expectation(description: "waiting")
-        sut.post(to: makeUrl(), with: makeValidData()) { result in
-            switch result {
-            case .success(let data): XCTFail("Expected error got \(result) instead")
-            case .failure(let error): XCTAssertEqual(error, .noConnectivity)
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1)
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: nil, error: makeError()))
+    }
+    
+    func test_post_should_complete_with_data_when_request_completes_with_200() {
+        expectResult(.success(makeValidData()), when: (data: makeValidData(), response: makeHttpResponse(), error: nil))
+    }
+    
+    func test_post_should_complete_with_data_when_request_completes_with_204() {
+        //This error do not return content
+        expectResult(.success(nil), when: (data: nil, response: makeHttpResponse(statusCode: 204), error: nil))
+        expectResult(.success(nil), when: (data: makeEmptyData(), response: makeHttpResponse(statusCode: 204), error: nil))
+        expectResult(.success(nil), when: (data: makeValidData(), response: makeHttpResponse(statusCode: 204), error: nil))
+    }
+    
+    func test_post_should_complete_with_data_when_request_completes_with_no_200() {
+        expectResult(.failure(.badRequest), when: (data: makeValidData(), response: makeHttpResponse(statusCode: 400), error: nil))
+        expectResult(.failure(.unauthorized), when: (data: makeValidData(), response: makeHttpResponse(statusCode: 401), error: nil))
+        expectResult(.failure(.forbidden), when: (data: makeValidData(), response: makeHttpResponse(statusCode: 403), error: nil))
+        expectResult(.failure(.serverError), when: (data: makeValidData(), response: makeHttpResponse(statusCode: 500), error: nil))
+    }
+    
+    func test_post_should_complete_with_error_on_all_invalid_cases() {
+        expectResult(.failure(.noConnectivity), when: (data: makeValidData(), response: makeHttpResponse(), error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: makeValidData(), response: nil, error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: makeValidData(), response: nil, error: nil))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: makeHttpResponse(), error: makeError()))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: makeHttpResponse(), error: nil))
+        expectResult(.failure(.noConnectivity), when: (data: nil, response: nil, error: nil))
     }
 }
 
@@ -70,10 +104,24 @@ extension AlamofireAdapterTests {
     
     func testRequestFor(url: URL = makeUrl(), data: Data?, action: @escaping (URLRequest) -> Void) {
         let sut = makeSut()
-        sut.post(to: url, with: data) { _ in }
         let exp = expectation(description: "waiting")
-        UrlProtocolStub.observeRequest { request in
-            action(request)
+        sut.post(to: url, with: data) { _ in exp.fulfill()}
+        var request: URLRequest?
+        UrlProtocolStub.observeRequest { request = $0}
+        wait(for: [exp], timeout: 1)
+        action(request!)
+    }
+    
+    func expectResult (_ expectedResult: Result<Data?, HttpError>, when stub: (data: Data?, response: HTTPURLResponse?, error: Error?), file: StaticString = #file, line: UInt = #line) {
+        let sut = makeSut()
+        UrlProtocolStub.simulate(data: stub.data, response: stub.response, error: stub.error)
+        let exp = expectation(description: "waiting")
+        sut.post(to: makeUrl(), with: makeValidData()) { receivedResult in
+            switch (expectedResult, receivedResult) {
+            case (.success(let expectedData), .success(let receivedData)): XCTAssertEqual(expectedData, receivedData, file: file, line: line)
+            case (.failure(let expectedError), .failure(let receivedError)): XCTAssertEqual(expectedError, receivedError, file: file, line: line)
+            default: XCTFail("Expected \(expectedResult) got \(receivedResult) instead", file: file, line: line)
+            }
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1)
@@ -106,7 +154,7 @@ class UrlProtocolStub: URLProtocol {
     
     open override func startLoading() {
         UrlProtocolStub.emit?(request)
-//        The following methods prepare data, response and error information that will later be sent to the class that made the request.
+        //        The following methods prepare data, response and error information that will later be sent to the class that made the request.
         if let data = UrlProtocolStub.data {
             client?.urlProtocol(self, didLoad: data)
         }
@@ -116,7 +164,7 @@ class UrlProtocolStub: URLProtocol {
         if let error = UrlProtocolStub.error {
             client?.urlProtocol(self, didFailWithError: error)
         }
-//        Shoot the response
+        //        Shoot the response
         client?.urlProtocolDidFinishLoading(self)
     }
     
