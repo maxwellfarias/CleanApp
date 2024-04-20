@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "B221421F-2269-4D8E-9DCA-FDE1DA90BF92",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CleanApp.xcodeproj",
+        "identifier" : "C4412D3F2BCF5F0900CD8549",
+        "name" : "infraTests"
+      }
+    }
+  ],
+  "version" : 1
+}

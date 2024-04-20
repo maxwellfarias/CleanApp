@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "42F46557-7443-42EA-BBA2-F32AF905C6A3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "threadSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CleanApp.xcodeproj",
+        "identifier" : "C4412D3F2BCF5F0900CD8549",
+        "name" : "infraTests"
+      }
+    }
+  ],
+  "version" : 1
+}
