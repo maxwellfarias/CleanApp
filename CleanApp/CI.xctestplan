@@ -1,0 +1,50 @@
+{
+  "configurations" : [
+    {
+      "id" : "D6CF7812-9A51-45B1-ABBF-34DF737E5C91",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:CleanApp.xcodeproj",
+          "identifier" : "C4AE19EC2BC8D2A90096F6F7",
+          "name" : "Data"
+        },
+        {
+          "containerPath" : "container:CleanApp.xcodeproj",
+          "identifier" : "C4AE19DC2BC8CF190096F6F7",
+          "name" : "Domain"
+        },
+        {
+          "containerPath" : "container:CleanApp.xcodeproj",
+          "identifier" : "C4412D382BCF5F0900CD8549",
+          "name" : "infra"
+        }
+      ]
+    },
+    "threadSanitizerEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:CleanApp.xcodeproj",
+        "identifier" : "C4AE19F32BC8D2A90096F6F7",
+        "name" : "DataTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CleanApp.xcodeproj",
+        "identifier" : "C4412D3F2BCF5F0900CD8549",
+        "name" : "infraTests"
+      }
+    }
+  ],
+  "version" : 1
+}
