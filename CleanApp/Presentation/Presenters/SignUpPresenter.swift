@@ -32,9 +32,9 @@ public class SignUpPresenter {
         } else if viewModel.passwordConfirmation == nil || viewModel.passwordConfirmation!.isEmpty {
             return "O campo password confirmation é obrigatório"
         } else if viewModel.passwordConfirmation != viewModel.password {
-            return "Falha ao confirmar a senha"
+            return "O campo password confirmation é inválido"
         } else if !emailValidator.isValid(email: viewModel.email!) {
-            return "Email inválido"
+            return "O campo email é inválido"
         }
         _ = emailValidator.isValid(email: viewModel.email!)
         return nil
