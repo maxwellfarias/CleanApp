@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C419D3302BD9813B00412496 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C419D3282BD9813B00412496 /* Presentation.framework */; };
 		C419D3352BD9813B00412496 /* PresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C419D3342BD9813B00412496 /* PresentationTests.swift */; };
-		C419D3362BD9813B00412496 /* Presentation.h in Headers */ = {isa = PBXBuildFile; fileRef = C419D32A2BD9813B00412496 /* Presentation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C41A486D2BCB6DAF008D3445 /* ExtensionHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41A486C2BCB6DAF008D3445 /* ExtensionHelpers.swift */; };
 		C4412D462BCF5F0900CD8549 /* AlamofireAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4412D452BCF5F0900CD8549 /* AlamofireAdapterTests.swift */; };
 		C4412D4E2BCF602200CD8549 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AE19ED2BC8D2A90096F6F7 /* Data.framework */; };
@@ -25,6 +24,7 @@
 		C4B3915E2BD2EADA0030472C /* AlamofireAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3915D2BD2EADA0030472C /* AlamofireAdapter.swift */; };
 		C4B3915F2BD2EC130030472C /* infra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4412D392BCF5F0900CD8549 /* infra.framework */; };
 		C4B391682BD2ED880030472C /* UrlProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B391672BD2ED880030472C /* UrlProtocolStub.swift */; };
+		C4B3D1372BDB37D00098461A /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B3D1362BDB37D00098461A /* EmailValidator.swift */; };
 		C4B5ABD82BCDB79F0078D037 /* TestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABD72BCDB79F0078D037 /* TestExtensions.swift */; };
 		C4B5ABDA2BCDBC810078D037 /* TestFactories.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABD92BCDBC810078D037 /* TestFactories.swift */; };
 		C4B5ABDD2BCDBD260078D037 /* HttpClientSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5ABDC2BCDBD260078D037 /* HttpClientSpy.swift */; };
@@ -43,6 +43,10 @@
 		C4E5AD1B2BD6E5C600FF1D66 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AE19DD2BC8CF190096F6F7 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C4E5AD1E2BD6E5C600FF1D66 /* infra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4412D392BCF5F0900CD8549 /* infra.framework */; };
 		C4E5AD1F2BD6E5C600FF1D66 /* infra.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4412D392BCF5F0900CD8549 /* infra.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4EBDBC22BDAD719002E3425 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBDBC12BDAD719002E3425 /* SignUpPresenter.swift */; };
+		C4EBDBC32BDAD76D002E3425 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AE19DD2BC8CF190096F6F7 /* Domain.framework */; };
+		C4EBDBC42BDAD76D002E3425 /* Domain.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C4AE19DD2BC8CF190096F6F7 /* Domain.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C4EBDBCA2BDAD850002E3425 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4EBDBC92BDAD850002E3425 /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +106,13 @@
 			remoteGlobalIDString = C4412D382BCF5F0900CD8549;
 			remoteInfo = infra;
 		};
+		C4EBDBC52BDAD76D002E3425 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4AE19C52BC8CEF20096F6F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4AE19DC2BC8CF190096F6F7;
+			remoteInfo = Domain;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -139,11 +150,21 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C4EBDBC72BDAD76D002E3425 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C4EBDBC42BDAD76D002E3425 /* Domain.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C419D3282BD9813B00412496 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C419D32A2BD9813B00412496 /* Presentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Presentation.h; sourceTree = "<group>"; };
 		C419D32F2BD9813B00412496 /* PresentationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PresentationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C419D3342BD9813B00412496 /* PresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationTests.swift; sourceTree = "<group>"; };
 		C41A486C2BCB6DAF008D3445 /* ExtensionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionHelpers.swift; sourceTree = "<group>"; };
@@ -158,6 +179,7 @@
 		C4AE19F92BC8D2A90096F6F7 /* RemoteAddAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAddAccountTests.swift; sourceTree = "<group>"; };
 		C4B3915D2BD2EADA0030472C /* AlamofireAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireAdapter.swift; sourceTree = "<group>"; };
 		C4B391672BD2ED880030472C /* UrlProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlProtocolStub.swift; sourceTree = "<group>"; };
+		C4B3D1362BDB37D00098461A /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		C4B5ABD72BCDB79F0078D037 /* TestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestExtensions.swift; sourceTree = "<group>"; };
 		C4B5ABD92BCDBC810078D037 /* TestFactories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFactories.swift; sourceTree = "<group>"; };
 		C4B5ABDC2BCDBD260078D037 /* HttpClientSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClientSpy.swift; sourceTree = "<group>"; };
@@ -170,6 +192,8 @@
 		C4E5AD0B2BD6E15F00FF1D66 /* CI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CI.xctestplan; sourceTree = "<group>"; };
 		C4E5AD102BD6E59A00FF1D66 /* UseCasesIntegrationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UseCasesIntegrationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E5AD122BD6E59A00FF1D66 /* AddAccountIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountIntegrationTests.swift; sourceTree = "<group>"; };
+		C4EBDBC12BDAD719002E3425 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		C4EBDBC92BDAD850002E3425 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EBDBC32BDAD76D002E3425 /* Domain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +269,9 @@
 		C419D3292BD9813B00412496 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				C419D32A2BD9813B00412496 /* Presentation.h */,
+				C4B3D1352BDB37C40098461A /* Validator */,
+				C4EBDBC82BDAD839002E3425 /* Views */,
+				C4EBDBCB2BDAD898002E3425 /* Presenters */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -252,7 +279,7 @@
 		C419D3332BD9813B00412496 /* PresentationTests */ = {
 			isa = PBXGroup;
 			children = (
-				C419D3342BD9813B00412496 /* PresentationTests.swift */,
+				C4B3D1342BDB33C90098461A /* Presenters */,
 			);
 			path = PresentationTests;
 			sourceTree = "<group>";
@@ -367,6 +394,22 @@
 			path = Http;
 			sourceTree = "<group>";
 		};
+		C4B3D1342BDB33C90098461A /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				C419D3342BD9813B00412496 /* PresentationTests.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		C4B3D1352BDB37C40098461A /* Validator */ = {
+			isa = PBXGroup;
+			children = (
+				C4B3D1362BDB37D00098461A /* EmailValidator.swift */,
+			);
+			path = Validator;
+			sourceTree = "<group>";
+		};
 		C4B5ABD62BCDB7770078D037 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,6 +486,22 @@
 			path = UseCasesIntegrationTests;
 			sourceTree = "<group>";
 		};
+		C4EBDBC82BDAD839002E3425 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C4EBDBC92BDAD850002E3425 /* AlertView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C4EBDBCB2BDAD898002E3425 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				C4EBDBC12BDAD719002E3425 /* SignUpPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -450,7 +509,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C419D3362BD9813B00412496 /* Presentation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,10 +544,12 @@
 				C419D3242BD9813B00412496 /* Sources */,
 				C419D3252BD9813B00412496 /* Frameworks */,
 				C419D3262BD9813B00412496 /* Resources */,
+				C4EBDBC72BDAD76D002E3425 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C4EBDBC62BDAD76D002E3425 /* PBXTargetDependency */,
 			);
 			name = Presentation;
 			productName = Presentation;
@@ -644,6 +704,7 @@
 				TargetAttributes = {
 					C419D3272BD9813B00412496 = {
 						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
 					};
 					C419D32E2BD9813B00412496 = {
 						CreatedOnToolsVersion = 15.2;
@@ -763,6 +824,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4EBDBC22BDAD719002E3425 /* SignUpPresenter.swift in Sources */,
+				C4EBDBCA2BDAD850002E3425 /* AlertView.swift in Sources */,
+				C4B3D1372BDB37D00098461A /* EmailValidator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,12 +944,18 @@
 			target = C4412D382BCF5F0900CD8549 /* infra */;
 			targetProxy = C4E5AD202BD6E5C600FF1D66 /* PBXContainerItemProxy */;
 		};
+		C4EBDBC62BDAD76D002E3425 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4AE19DC2BC8CF190096F6F7 /* Domain */;
+			targetProxy = C4EBDBC52BDAD76D002E3425 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C419D3372BD9813B00412496 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -911,6 +981,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -918,6 +989,7 @@
 		C419D3382BD9813B00412496 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -950,6 +1022,7 @@
 		C419D3392BD9813B00412496 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -966,6 +1039,7 @@
 		C419D33A2BD9813B00412496 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
